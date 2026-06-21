@@ -202,8 +202,9 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 /* RESULT */
 .res-hero{text-align:center;padding:1.25rem 0 .75rem}
 .res-mark{font-family:'DM Serif Display',serif;font-size:38px;color:var(--gold);margin-bottom:.4rem}
-.bridge-row{display:flex;align-items:center;justify-content:center;gap:0;margin:.9rem 0;flex-wrap:wrap}
-.bx{background:var(--paper);border:1px solid var(--paper-3);border-radius:var(--radius);padding:10px 12px;text-align:center;flex:1;min-width:80px;min-height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bridge-row{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:.9rem 0}
+.bx{background:var(--paper);border:1px solid var(--paper-3);border-radius:var(--radius);padding:10px 12px;text-align:center;min-height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.barrow{text-align:center}
 .bx.hl{background:var(--ink);border-color:var(--ink);color:var(--gold-light)}
 .bx.ac{background:var(--gold);border-color:var(--gold);color:var(--ink);box-shadow:0 2px 8px rgba(196,147,63,.35)}
 .bx-l{font-size:11px;opacity:.7;margin-bottom:3px;letter-spacing:.06em}
@@ -301,6 +302,8 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
   .fbox{flex:1;min-width:0}
   .flow{overflow-x:visible;margin-left:0;margin-right:0}
   .step0-extra{display:none}
+  .smart-old{display:none}
+  .smarter-grid{grid-template-columns:1fr}
   .custom-val-row{padding:.5rem .6rem}
   .custom-val-row #custom-val-input{min-width:0;width:0}
   .prog-wrap{padding:.8rem 1rem .5rem}
@@ -398,6 +401,10 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
     <div class="step0-extra" style="margin-top:.85rem;padding:.9rem 1.1rem;background:var(--gold-pale);border:1px solid var(--gold-light);border-left:3px solid var(--gold);border-radius:0 var(--radius-lg) var(--radius-lg) 0;font-size:14px;color:var(--ink-2);line-height:1.7">
       이 도구는 EVOKE의 <strong>E·V·O 단계</strong>를 미리 스스로 탐구해보는 도구입니다. 탐색이 끝나면 이 결과를 가지고 <strong>E·V·O에 대한 객관적인 해석</strong>을 받거나, <strong>K·E 단계</strong>(지식의 적용·실행)로 이어갈 수 있습니다.
     </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:.75rem;background:#f0f4ff;border:1px solid #c5d3f5;border-left:3px solid #6b8cdd;border-radius:var(--radius-lg);padding:.85rem 1.1rem;margin-bottom:.6rem">
+    <div style="font-size:20px;line-height:1;flex-shrink:0">🖥️</div>
+    <div style="font-size:13px;color:#3a4f8a;line-height:1.6"><strong>PC·웹 환경을 권장합니다</strong> — 화면이 넓을수록 매트릭스와 목표설정표를 작성하기 편합니다. 모바일에서도 이용 가능하지만 일부 표는 가로로 스크롤될 수 있습니다.</div>
   </div>
   <div id="time-notice" style="display:flex;align-items:center;gap:.75rem;background:#fffbf0;border:1px solid #f0d99a;border-left:3px solid var(--amber);border-radius:var(--radius-lg);padding:.85rem 1.1rem;margin-bottom:.75rem;transition:box-shadow .25s,border-color .25s,background .25s">
     <div style="font-size:20px;line-height:1;flex-shrink:0">⏱</div>
@@ -746,8 +753,8 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
       <div class="eyebrow" style="margin-bottom:.5rem">목표 설정 방법론</div>
       <div class="e-section-title">목표 설정 TIP</div>
       <p style="font-size:15px;color:var(--ink-3);line-height:1.7;margin-bottom:1rem">기존의 SMART 목표설정을 확장한 SMARTER 프레임워크입니다. 7가지 기준으로 목표를 구체화하면 실행 가능성이 크게 높아집니다.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
-        <div>
+      <div class="smarter-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+        <div class="smart-old">
           <div style="text-align:center;font-size:13px;font-weight:500;color:var(--ink-3);letter-spacing:.12em;margin-bottom:.5rem;padding-bottom:.35rem;border-bottom:1px solid var(--paper-3);text-transform:uppercase">SMART (기존)</div>
           <table class="st">
             <tr><th>S</th><td><span class="st-let">Specific · 구체적</span><span class="st-sub">명확하게 정의된 목표. "저축을 늘린다" 보다 "매달 50만원 적금"이 더 강하다.</span></td></tr>
@@ -787,9 +794,9 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
       </div>
       <div class="bridge-row">
         <div class="bx"><div class="bx-l">현재 상황</div><div class="bx-v">Reality</div></div>
-        <div class="barrow">→</div>
+        <div class="barrow">↓</div>
         <div class="bx hl"><div class="bx-l">재무목표</div><div class="bx-v" id="res-gn">Goals</div></div>
-        <div class="barrow">→</div>
+        <div class="barrow">↓</div>
         <div class="bx ac"><div class="bx-l">삶의 가치</div><div class="bx-v" id="res-top">Values</div></div>
       </div>
     </div>
