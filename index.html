@@ -249,6 +249,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 /* PRINT A4 */
 @media print{
   @page{margin:8mm;size:A4}
+  body::before{content:'IdentiFi';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-40deg);font-family:'DM Serif Display',serif;font-size:110px;color:rgba(196,147,63,.08);white-space:nowrap;pointer-events:none;z-index:9999}
   .nav,.final-tabs,.pt-ctrls,.add-cat-btn,.guide-box,.prio-btn,.prio-reset,.prio-count,.prog-wrap{display:none!important}
   .site-header{position:static;border-bottom:1px solid #ddd;padding:.4rem .5rem;margin-bottom:.4rem}
   .site-cfp-sub{display:none}
