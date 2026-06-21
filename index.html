@@ -251,7 +251,8 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 /* PRINT A4 */
 @media print{
   @page{margin:8mm;size:A4}
-  #print-wm{display:block;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-40deg);font-family:'DM Serif Display',serif;font-size:110px;color:rgba(196,147,63,.12);white-space:nowrap;pointer-events:none;z-index:9999;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print-wm{display:none}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='360'%3E%3Ctext x='260' y='180' font-family='Georgia,serif' font-size='58' fill='rgba(196,147,63,0.11)' text-anchor='middle' dominant-baseline='middle' transform='rotate(-40,260,180)'%3EIdentiFi%3C/text%3E%3C/svg%3E");background-repeat:repeat;background-attachment:fixed}
   .nav,.final-tabs,.pt-ctrls,.add-cat-btn,.guide-box,.prio-btn,.prio-reset,.prio-count,.prog-wrap{display:none!important}
   .site-header{position:static;border-bottom:1px solid #ddd;padding:.4rem .5rem;margin-bottom:.4rem}
   .site-cfp-sub{display:none}
