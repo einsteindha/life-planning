@@ -203,9 +203,9 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 /* RESULT */
 .res-hero{text-align:center;padding:1.25rem 0 .75rem}
 .res-mark{font-family:'DM Serif Display',serif;font-size:38px;color:var(--gold);margin-bottom:.4rem}
-.bridge-row{display:flex;align-items:center;justify-content:center;gap:4px;margin:.9rem 0;flex-wrap:wrap}
-.bx{background:var(--paper);border:1px solid var(--paper-3);border-radius:var(--radius);padding:10px 12px;text-align:center;min-height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.barrow{text-align:center}
+.bridge-row{display:flex;align-items:stretch;justify-content:center;gap:4px;margin:.9rem 0;flex-wrap:wrap}
+.bx{background:var(--paper);border:1px solid var(--paper-3);border-radius:var(--radius);padding:8px 10px;text-align:center;min-width:82px;max-width:120px;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.barrow{text-align:center;align-self:center}
 .bx.hl{background:var(--ink);border-color:var(--ink);color:var(--gold-light)}
 .bx.ac{background:var(--gold);border-color:var(--gold);color:var(--ink);box-shadow:0 2px 8px rgba(196,147,63,.35)}
 .bx-l{font-size:11px;opacity:.7;margin-bottom:3px;letter-spacing:.06em}
@@ -253,7 +253,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 /* PRINT A4 */
 @media print{
   @page{margin:8mm;size:A4}
-  #print-wm{display:block!important;position:fixed;top:0;left:0;width:100%;height:100%;z-index:999999;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='360'%3E%3Ctext x='260' y='180' font-family='Georgia,serif' font-size='58' fill='rgba(196,147,63,0.13)' text-anchor='middle' dominant-baseline='middle' transform='rotate(-40,260,180)'%3EIdentiFi%3C/text%3E%3C/svg%3E");background-repeat:repeat;background-size:520px 360px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print-wm{display:block!important;position:fixed;top:0;left:0;width:100%;height:100%;z-index:999999;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='360'%3E%3Ctext x='260' y='180' font-family='Georgia,serif' font-size='58' fill='rgba(196,147,63,0.08)' text-anchor='middle' dominant-baseline='middle' transform='rotate(-40,260,180)'%3EIdentiFi%3C/text%3E%3C/svg%3E");background-repeat:repeat;background-size:520px 360px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .nav,.final-tabs,.pt-ctrls,.add-cat-btn,.guide-box,.prio-btn,.prio-reset,.prio-count,.prog-wrap{display:none!important}
   .site-header{position:static;border-bottom:1px solid #ddd;padding:.4rem .5rem;margin-bottom:.4rem}
@@ -300,8 +300,11 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
   .ke-web{display:none}.ke-mob{display:inline}
   .bridge-row{flex-direction:column;align-items:stretch;gap:0}
   .eis-desc{display:none}
+  .eis-wrap{overflow-x:visible!important}
+  .eis-table{min-width:0!important}
+  .eis-table th,.eis-table td{padding:8px 6px!important;font-size:12px!important;white-space:normal!important}
   .smart-old{display:none}
-  #panel-ref .card-w div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr}
+  .smart-grid{grid-template-columns:1fr!important}
   .evoke-explain{display:none!important}
   .evoke-box{min-width:0;flex:1}
   .evoke-row{flex-wrap:nowrap;gap:2px}
@@ -706,8 +709,8 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
       <p style="font-size:15px;color:var(--ink-3);line-height:1.7;margin-bottom:1.1rem">설정한 목표를 <strong style="color:var(--ink)">중요도</strong>와 <strong style="color:var(--ink)">긴급도</strong> 두 축으로 분류해 우선순위를 결정합니다. 중요한 것과 긴급한 것을 혼동하지 않는 것이 핵심입니다.</p>
 
       <!-- Eisenhower 2x2 Matrix Table -->
-      <div style="overflow-x:auto;margin-bottom:1.1rem">
-        <table style="width:100%;border-collapse:collapse;min-width:440px">
+      <div class="eis-wrap" style="overflow-x:auto;margin-bottom:1.1rem">
+        <table class="eis-table" style="width:100%;border-collapse:collapse;min-width:440px">
           <thead>
             <tr>
               <th style="border:none;background:transparent;width:100px"></th>
@@ -762,7 +765,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
       <div class="eyebrow" style="margin-bottom:.5rem">목표 설정 방법론</div>
       <div class="e-section-title">목표 설정 TIP</div>
       <p style="font-size:15px;color:var(--ink-3);line-height:1.7;margin-bottom:1rem">기존의 SMART 목표설정을 확장한 SMARTER 프레임워크입니다. 7가지 기준으로 목표를 구체화하면 실행 가능성이 크게 높아집니다.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+      <div class="smart-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
         <div class="smart-old">
           <div style="text-align:center;font-size:13px;font-weight:500;color:var(--ink-3);letter-spacing:.12em;margin-bottom:.5rem;padding-bottom:.35rem;border-bottom:1px solid var(--paper-3);text-transform:uppercase">SMART (기존)</div>
           <table class="st">
@@ -1274,9 +1277,9 @@ function buildResult(){
   document.getElementById('res-gn').innerHTML=gnGrouped.map(g=>`<div style="text-align:left;margin-bottom:.3rem"><div style="font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--gold-light);opacity:.8">${g.cat}</div>${g.goals.map(t=>`<div style="font-size:11px;line-height:1.4;opacity:.9">· ${t}</div>`).join('')}</div>`).join('');
 
   document.getElementById('res-kinder').innerHTML=[
-    {q:'💰 재정적 자유가 있다면? (Having)',id:'q1'},
-    {q:'⏳ 5~10년밖에 없다면? (Doing)',id:'q2'},
-    {q:'🕊️ 오늘이 마지막 날이라면? (Being)',id:'q3'},
+    {q:'💰 재정적 자유가 있다면?',id:'q1'},
+    {q:'⏳ 5~10년밖에 없다면?',id:'q2'},
+    {q:'🕊️ 오늘이 마지막 날이라면?',id:'q3'},
   ].map(k=>`<div class="k-ans"><div class="k-q">${k.q}</div><div class="k-a">${esc(document.getElementById(k.id)?.value||'(미작성)')}</div></div>`).join('');
 
   document.getElementById('res-values').innerHTML=top3.length
