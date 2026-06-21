@@ -115,7 +115,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 .m3-rh{padding:10px 13px;font-size:13px;font-weight:500;vertical-align:middle;min-width:192px;line-height:1.4}
 .m3-rh-core{background:var(--gold-pale);border-left:3px solid var(--gold);color:var(--ink-2)}
 .m3-rh-ought{background:var(--paper-2);color:var(--ink-2)}
-.m3-rh-fun{background:var(--paper-2);color:var(--ink-3)}
+.m3-rh-fun{background:var(--paper-2);color:var(--ink-2)}
 .m3-rh-sub{display:block;font-size:12px;font-weight:400;color:var(--ink-4);margin-top:4px;line-height:1.5}
 .m3-cell{padding:5px}
 .m3-ta{width:100%;border:1px solid var(--paper-3);border-radius:var(--radius);padding:8px 10px;font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--ink);resize:none;min-height:96px;line-height:1.5;background:var(--paper)}
@@ -185,6 +185,20 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 .eq-body{font-size:13px;color:var(--ink-3);line-height:1.6}
 .sec-div{border:none;border-top:1px solid var(--paper-3);margin:1.75rem 0}
 
+/* RESULT SECTION HEADERS */
+#panel-result .sec-h{color:var(--gold);border-bottom-color:rgba(196,147,63,.25)}
+
+/* RESULT DIVIDER */
+.res-divider{border:none;border-top:2px solid var(--paper-3);margin:1rem 0}
+
+/* RESULT ROWS */
+.res-row{display:flex;align-items:flex-start;gap:8px;padding:7px 10px;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:var(--radius);margin-bottom:.4rem}
+.res-badge{width:20px;height:20px;background:var(--ink);color:var(--gold-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;margin-top:1px}
+.res-row-title{font-weight:500;font-size:13px;color:var(--ink);line-height:1.4}
+.res-row-sub{font-size:11px;color:var(--ink-3);margin-top:1px;line-height:1.5}
+.res-row.top1{background:var(--gold-pale);border-color:var(--gold-light);border-left:2px solid var(--gold)}
+.res-row.top1 .res-badge{background:var(--gold);color:var(--ink)}
+
 /* RESULT */
 .res-hero{text-align:center;padding:1.25rem 0 .75rem}
 .res-mark{font-family:'DM Serif Display',serif;font-size:38px;color:var(--gold);margin-bottom:.4rem}
@@ -235,7 +249,13 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 /* PRINT A4 */
 @media print{
   @page{margin:8mm;size:A4}
-  .site-header,.nav,.final-tabs,.pt-ctrls,.add-cat-btn,.guide-box,.prio-btn,.prio-reset,.prio-count,.prog-wrap{display:none!important}
+  .nav,.final-tabs,.pt-ctrls,.add-cat-btn,.guide-box,.prio-btn,.prio-reset,.prio-count,.prog-wrap{display:none!important}
+  .site-header{position:static;border-bottom:1px solid #ddd;padding:.4rem .5rem;margin-bottom:.4rem}
+  .site-cfp-sub{display:none}
+  .res-hero h2{display:none}
+  .res-hero{padding-top:0}
+  #panel-result .card{border:none;background:transparent;padding-left:0;padding-right:.5rem}
+  #res-kinder-quote{display:none!important}
   .step{display:none!important}
   #step-9{display:block!important}
   .final-panel{display:none!important}
@@ -253,6 +273,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
   .m3{font-size:8px}
   .pt{font-size:7.5px}
   .obstacle-card,.obstacle-card *{font-size:11px!important}
+  #res-interp,#res-interp *{font-size:11px!important}
   #panel-result>*:last-child{margin-bottom:0!important}
   .card-w:last-child{margin-bottom:0!important}
   html,body{height:auto;overflow:visible}
@@ -281,7 +302,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 <header class="site-header">
   <div>
     <div class="site-logo">Identi<span>Fi</span></div>
-    <div class="site-cfp">정원준 CFP · 가치 기반 재무설계</div>
+    <div class="site-cfp">정원준 CFP<span class="site-cfp-sub"> · 가치 기반 재무설계</span></div>
   </div>
   <div class="site-sub">George Kinder<br>Life Planning</div>
 </header>
@@ -756,36 +777,42 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
       </div>
     </div>
 
-    <div class="card-w" style="margin-bottom:1rem"><div id="res-interp"></div></div>
+    <hr class="res-divider">
 
-    <div class="card-w"><div class="sec-h" style="margin-bottom:.7rem">3가지 질문</div><div id="res-kinder"></div></div>
+    <div class="card-w"><div class="sec-h" style="margin-bottom:.7rem">3가지 질문</div><div id="res-kinder"></div><div id="res-resonance"></div></div>
 
     <div class="card-w"><div class="sec-h" style="margin-bottom:.7rem">핵심 가치 (상위 3개)</div><div id="res-values"></div></div>
-    <div class="card-w"><div class="sec-h" style="margin-bottom:.7rem">내면의 소리 3×3</div><div id="res-matrix"></div></div>
 
-    <div class="card-w"><div class="sec-h" style="margin-bottom:.7rem">O — 장애물 (Obstacles)</div><div id="res-obstacles"></div></div>
+    <hr class="res-divider">
+
+    <div class="card-w"><div class="sec-h" style="margin-bottom:.7rem">내면의 소리 3×3</div><div id="res-matrix"></div><div id="res-interp" style="margin-top:.75rem"></div></div>
+
+    <div class="card-w"><div class="sec-h" style="margin-bottom:.7rem">장애물 (Obstacles)</div><div id="res-obstacles"></div></div>
     <div class="card-w obstacle-card">
-      <div class="eyebrow" style="margin-bottom:.5rem">O — Obstacles 구체적 접근법</div>
-      <div class="e-section-title">장애물 극복하기 — 3단계 방법</div>
+      <div class="sec-h" style="margin-bottom:.7rem">3단계 장애물 극복하기</div>
       <p style="font-size:15px;color:var(--ink-3);line-height:1.7;margin-bottom:1rem">장애물 단계는 단순히 문제를 나열하는 것이 아닙니다. 불꽃을 살리고, 내면을 드러내고, 창조적으로 돌파하는 과정입니다.</p>
-      <div class="obstacle-steps" style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:.5rem">
-        <div style="display:flex;align-items:baseline;gap:.85rem;padding:.75rem 1rem;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:var(--radius-lg)">
-          <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);flex-shrink:0">①</div>
-          <div><div style="font-weight:500;font-size:14px;color:var(--ink);margin-bottom:.2rem">불꽃이 계속 타오르게</div><div style="font-size:13px;color:var(--ink-2);line-height:1.7">내면의 소리(Heart's Core)에서 발견한 꿈과 욕망이 식지 않도록 합니다. 어린 시절부터 땅에 묻어온 꿈의 불씨를 다시 꺼내어 그것이 여전히 살아있음을 확인하는 것이 출발점입니다.</div></div>
+      <div class="obstacle-steps" style="margin-bottom:.5rem">
+        <div class="res-row">
+          <div class="res-badge">1</div>
+          <div><div class="res-row-title">불꽃이 계속 타오르게</div><div class="res-row-sub">내면의 소리(Heart's Core)에서 발견한 꿈과 욕망이 식지 않도록 합니다. 어린 시절부터 땅에 묻어온 꿈의 불씨를 다시 꺼내어 그것이 여전히 살아있음을 확인하는 것이 출발점입니다.</div></div>
         </div>
-        <div style="display:flex;align-items:baseline;gap:.85rem;padding:.75rem 1rem;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:var(--radius-lg)">
-          <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);flex-shrink:0">②</div>
-          <div><div style="font-weight:500;font-size:14px;color:var(--ink);margin-bottom:.2rem">내적 장애물 드러내기</div><div style="font-size:13px;color:var(--ink-2);line-height:1.7">무의식적 신념, 자기 비판, 두려움, "나는 이런 사람이 아니야"라는 내면의 목소리들이 모두 수면 위로 올라오도록 합니다. 드러난 것은 더 이상 무의식적으로 작동하지 않습니다.</div></div>
+        <div class="res-row">
+          <div class="res-badge">2</div>
+          <div><div class="res-row-title">내적 장애물 드러내기</div><div class="res-row-sub">무의식적 신념, 자기 비판, 두려움, "나는 이런 사람이 아니야"라는 내면의 목소리들이 모두 수면 위로 올라오도록 합니다. 드러난 것은 더 이상 무의식적으로 작동하지 않습니다.</div></div>
         </div>
-        <div style="display:flex;align-items:baseline;gap:.85rem;padding:.75rem 1rem;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:var(--radius-lg)">
-          <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);flex-shrink:0">③</div>
-          <div><div style="font-weight:500;font-size:14px;color:var(--ink);margin-bottom:.2rem">창조적 시나리오 만들기</div><div style="font-size:13px;color:var(--ink-2);line-height:1.7">외적 장애물(자금 부족, 가족 반대, 현실적 제약 등)에 대해 브레인스토밍을 통해 <em>창조적인 우회 경로</em>를 만들어 냅니다. 현실적이지 않아도 됩니다. 가능성의 공간을 먼저 넓히는 것이 목표입니다.</div></div>
+        <div class="res-row">
+          <div class="res-badge">3</div>
+          <div><div class="res-row-title">창조적 시나리오 만들기</div><div class="res-row-sub">외적 장애물(자금 부족, 가족 반대, 현실적 제약 등)에 대해 브레인스토밍을 통해 <em>창조적인 우회 경로</em>를 만들어 냅니다. 현실적이지 않아도 됩니다. 가능성의 공간을 먼저 넓히는 것이 목표입니다.</div></div>
         </div>
       </div>
     </div>
+
+    <hr class="res-divider">
+
     <div class="card-w"><div class="sec-h" style="margin-bottom:.7rem">목표설정 매트릭스 우선순위 (상위 8개) — <span style="font-style:italic;font-weight:400;letter-spacing:0;text-transform:none">목표를 달성하는 것은 나의 핵심 가치와 어떻게 연결됩니까?</span></div><div id="res-period"></div></div>
 
     <div class="next-step-cta" style="background:var(--ink);color:#fff;border-radius:var(--radius-lg);padding:1.25rem 1.5rem;margin:.75rem 0 1rem;text-align:center">
+      <div id="res-kinder-quote"></div>
       <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--gold-light);margin-bottom:.6rem">다음 단계</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem;text-align:left">
         <div style="padding:.8rem 1rem;background:rgba(255,255,255,.07);border-radius:var(--radius);border:1px solid rgba(255,255,255,.12)">
@@ -1204,15 +1231,14 @@ function buildResult(){
   const top3=priority.slice(0,3);
   document.getElementById('res-top').textContent=top3.length?top3.map(v=>v.n).join(' · '):'Values';
 
-  // 우선순위 목표 카테고리
-  const gnParts=[];
-  periodCats.forEach((cat,ci)=>{
-    if(!cat.trim()) return;
-    const goals=PERIODS.flatMap(p=>{ const cell=periodData[ci]?.[p]; return (cell&&cell.prio>0&&cell.text.trim())?[{text:cell.text,prio:cell.prio}]:[]; }).sort((a,b)=>a.prio-b.prio);
-    if(!goals.length) return;
-    gnParts.push(`<div style="text-align:left;margin-bottom:.4rem"><div style="font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--gold-light);margin-bottom:2px">${cat}</div>${goals.map(g=>`<div style="font-size:11px;line-height:1.5;opacity:.85">· ${g.text}</div>`).join('')}</div>`);
-  });
-  document.getElementById('res-gn').innerHTML=gnParts.join('');
+  // 우선순위 상위 3개 목표
+  const allGoals=[];
+  periodCats.forEach((cat,ci)=>{ if(!cat.trim()) return; PERIODS.forEach(p=>{ const cell=periodData[ci]?.[p]; if(cell&&cell.prio>0&&cell.text.trim()) allGoals.push({cat,text:cell.text,prio:cell.prio}); }); });
+  allGoals.sort((a,b)=>a.prio-b.prio);
+  const top3Goals=allGoals.slice(0,3);
+  const gnGrouped=[];
+  top3Goals.forEach(g=>{ const last=gnGrouped[gnGrouped.length-1]; if(last&&last.cat===g.cat) last.goals.push(g.text); else gnGrouped.push({cat:g.cat,goals:[g.text]}); });
+  document.getElementById('res-gn').innerHTML=gnGrouped.map(g=>`<div style="text-align:left;margin-bottom:.3rem"><div style="font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--gold-light);opacity:.8">${g.cat}</div>${g.goals.map(t=>`<div style="font-size:11px;line-height:1.4;opacity:.9">· ${t}</div>`).join('')}</div>`).join('');
 
   document.getElementById('res-kinder').innerHTML=[
     {q:'💰 재정적 자유가 있다면? (Having)',id:'q1'},
@@ -1221,22 +1247,19 @@ function buildResult(){
   ].map(k=>`<div class="k-ans"><div class="k-q">${k.q}</div><div class="k-a">${esc(document.getElementById(k.id)?.value||'(미작성)')}</div></div>`).join('');
 
   document.getElementById('res-values').innerHTML=top3.length
-    ?top3.map((v,i)=>`<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;padding:7px 9px;background:${i===0?'var(--ink)':'var(--paper-2)'};border:1px solid ${i===0?'var(--ink)':'var(--paper-3)'};border-radius:var(--radius);color:${i===0?'var(--gold-light)':'var(--ink)'}">
-      <div style="width:19px;height:19px;background:${i===0?'rgba(255,255,255,.15)':'var(--gold-pale)'};border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:13px;color:${i===0?'var(--gold-light)':'var(--gold)'};flex-shrink:0">${i+1}</div>
-      <div><div style="font-weight:500;font-size:14px">${v.n}</div><div style="font-size:11px;opacity:.7">${v.t} · ${v.d}</div></div>
-    </div>`).join('')
+    ?top3.map((v,i)=>`<div class="res-row${i===0?' top1':''}"><div class="res-badge">${i+1}</div><div><div class="res-row-title">${v.n}</div><div class="res-row-sub">${v.t} · ${v.d}</div></div></div>`).join('')
     :'<p style="color:var(--ink-4);font-size:13px">선택된 가치가 없습니다.</p>';
 
   // 3x3
   const rs=[{k:'core',l:'❤️ 내면의 소리'},{k:'ought',l:'✅ 해야 하는 것'},{k:'fun',l:'✨ 하면 좋은 것'}];
   const cs=[{k:'have',l:'소유'},{k:'do',l:'체험'},{k:'be',l:'존재'}];
-  let mh=`<table style="width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed"><tr><th style="border:1px solid var(--paper-3);padding:4px 6px;background:var(--paper-2);width:25%"></th>`;
-  cs.forEach(c=>mh+=`<th style="border:1px solid var(--paper-3);padding:4px 6px;background:var(--ink);color:var(--gold-light);text-align:center;width:25%">${c.l}</th>`);
+  let mh=`<table style="width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed"><tr><th style="border:1px solid var(--paper-3);padding:4px 6px;background:var(--paper-2);width:16%"></th>`;
+  cs.forEach(c=>mh+=`<th style="border:1px solid var(--paper-3);padding:9px 6px;background:var(--ink);color:var(--gold-light);text-align:center;width:28%">${c.l}</th>`);
   mh+='</tr>';
   rs.forEach(r=>{
-    mh+=`<tr><td style="border:1px solid var(--paper-3);padding:4px 6px;font-weight:500;background:var(--paper-2);font-size:12px;word-break:keep-all">${r.l}</td>`;
+    mh+=`<tr><td style="border:1px solid var(--paper-3);padding:4px 6px;font-weight:500;background:var(--paper-2);font-size:12px;word-break:keep-all;text-align:center;vertical-align:middle">${r.l}</td>`;
     cs.forEach(c=>{ const val=document.getElementById('m-'+r.k+'-'+c.k)?.value||'';
-      mh+=`<td style="border:1px solid var(--paper-3);padding:4px 6px;vertical-align:top;white-space:pre-wrap;font-size:12px">${esc(val)||'<span style="color:var(--ink-4)">-</span>'}</td>`; });
+      mh+=`<td style="border:1px solid var(--paper-3);padding:4px 6px;vertical-align:top;white-space:pre-wrap;font-size:12px;min-height:60px;height:60px">${esc(val)||'<span style="color:var(--ink-4)">-</span>'}</td>`; });
     mh+='</tr>';
   });
   document.getElementById('res-matrix').innerHTML=mh+'</table>';
@@ -1253,26 +1276,27 @@ function buildResult(){
     q3:'질문 3에서 울림이 컸다는 것은 <em>존재의 차원</em>—어떤 사람으로 기억되고 싶은지, 어떤 관계를 남기고 싶은지—에 대한 갈망이 크다는 신호입니다. 가장 깊은 가치가 여기에 있을 가능성이 높습니다.',
     all:'세 가지 모두에서 울림을 느꼈다는 것은 욕망·필요·존재 모든 층위에서 삶이 풍요로워질 여지가 크다는 의미입니다. 어느 하나를 억지로 고를 필요 없이, 세 가지 방향을 균형 있게 탐색하세요.',
   };
+  // George Kinder 인용구 → 다음단계 바로 위
+  const quoteEl=document.getElementById('res-kinder-quote');
+  if(quoteEl){
+    quoteEl.innerHTML='<div style="padding:.85rem 1rem 1rem;margin-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.12)"><div style="font-family:\'Noto Serif KR\',serif;font-size:15px;color:var(--gold-light);font-style:italic;line-height:1.85;margin-bottom:.5rem">"우리 모두는 어린 시절부터 자신의 꿈의 불씨를 땅에 묻는 법만을 배워 왔다."</div><div style="font-size:12px;color:rgba(255,255,255,.45);text-align:right">— George Kinder</div></div>';
+  }
+
+  // 울림이 컸던 질문 → 3가지 질문 카드 아래
+  const resonanceEl=document.getElementById('res-resonance');
+  if(resonanceEl && resonance.length>0){
+    const hintHtml=resonance.map(r=>resHint[r]?`<div style="margin-bottom:.5rem"><strong style="font-size:12px;color:var(--gold);letter-spacing:.06em">${resLabels[r]}</strong><div style="font-size:14px;color:var(--ink-2);line-height:1.75;margin-top:2px">${resHint[r]}</div></div>`:'').filter(Boolean).join('');
+    if(hintHtml) resonanceEl.innerHTML=`<div style="margin-top:.75rem;padding:.9rem 1.1rem;background:var(--gold-pale);border:1px solid var(--gold-light);border-left:3px solid var(--gold);border-radius:0 var(--radius-lg) var(--radius-lg) 0">${hintHtml}</div>`;
+  }
+
+  // 해야 하는 것 해석 → res-interp
   const interpEl=document.getElementById('res-interp');
   if(interpEl){
-    // 해야 하는 것 row content
     const oughtVals=[document.getElementById('m-ought-have')?.value,document.getElementById('m-ought-do')?.value,document.getElementById('m-ought-be')?.value].filter(v=>v&&v.trim());
-    let interpHtml='<div style="background:var(--ink);color:#fff;border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:1rem">';
-    interpHtml+='<div style="font-family:\'Noto Serif KR\',serif;font-size:15px;color:var(--gold-light);font-style:italic;line-height:1.8;margin-bottom:.6rem">"우리 모두는 어린 시절부터 자신의 꿈의 불씨를 땅에 묻는 법만을 배워 왔다."</div>';
-    interpHtml+='<div style="font-size:12px;color:rgba(255,255,255,.5);text-align:right">— George Kinder</div></div>';
-    if(resonance.length>0){
-      const hintHtml=resonance.map(r=>resHint[r]?`<div style="margin-bottom:.5rem"><strong style="font-size:12px;color:var(--gold);letter-spacing:.06em">${resLabels[r]}</strong><div style="font-size:14px;color:var(--ink-2);line-height:1.75;margin-top:2px">${resHint[r]}</div></div>`:'').filter(Boolean).join('');
-      if(hintHtml){
-        interpHtml+=`<div style="padding:.9rem 1.1rem;background:var(--gold-pale);border:1px solid var(--gold-light);border-left:3px solid var(--gold);border-radius:0 var(--radius-lg) var(--radius-lg) 0;margin-bottom:.9rem">${hintHtml}</div>`;
-      }
-    }
-    if(oughtVals.length>0){
-      interpHtml+=`<div style="padding:.85rem 1.1rem;background:var(--paper-2);border:1px solid var(--paper-3);border-left:3px solid var(--ink-3);border-radius:0 var(--radius-lg) var(--radius-lg) 0">
-        <div style="font-size:12px;font-weight:500;color:var(--ink-3);margin-bottom:.35rem;letter-spacing:.08em;text-transform:uppercase">해석 — '해야 하는 것' 항목과 무의식적 신념</div>
-        <div style="font-size:14px;color:var(--ink-2);line-height:1.75">'해야 하는 것(Ought to)' 칸에 적힌 목표들—<em>${esc(oughtVals.join(', '))}</em>—은 순수한 욕망이 아니라 <strong style="color:var(--ink-2)">무의식적 신념, 사회적 기대, 의무감</strong>과 연결되어 있을 수 있습니다. 이 항목들을 달성해야 한다고 느끼는 이유를 한 번 더 탐색해보세요. 진정한 내 것인가, 아니면 누군가의 기대를 내면화한 것인가?</div>
-      </div>`;
-    }
-    interpEl.innerHTML=interpHtml;
+    interpEl.innerHTML=oughtVals.length>0?`<div style="padding:.85rem 1.1rem;background:#fff;border:1px solid var(--paper-3);border-left:3px solid var(--ink-3);border-radius:0 var(--radius-lg) var(--radius-lg) 0">
+      <div style="font-size:12px;font-weight:500;color:var(--ink-3);margin-bottom:.35rem;letter-spacing:.08em;text-transform:uppercase">해석 — '해야 하는 것' 항목과 무의식적 신념</div>
+      <div style="font-size:13px;color:var(--ink-2);line-height:1.7">'해야 하는 것(Ought to)' 칸에 적힌 목표들—<em>${esc(oughtVals.join(', '))}</em>—은 순수한 욕망이 아니라 <strong style="color:var(--ink-2)">무의식적 신념, 사회적 기대, 의무감</strong>과 연결되어 있을 수 있습니다. 이 항목들을 달성해야 한다고 느끼는 이유를 한 번 더 탐색해보세요. 진정한 내 것인가, 아니면 누군가의 기대를 내면화한 것인가?</div>
+    </div>`:'';
   }
 
   // Obstacles
@@ -1291,11 +1315,7 @@ function buildResult(){
   }
 
   document.getElementById('res-period').innerHTML=ap.slice(0,8).length
-    ?`<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:5px">
-      ${ap.slice(0,8).map(it=>{const is1=it.prio===1;return `<div style="display:flex;gap:6px;padding:6px 8px;background:${is1?'var(--gold-pale)':'var(--paper-2)'};border:${is1?'2px solid var(--gold)':'1px solid var(--paper-3)'};border-radius:var(--radius);align-items:flex-start">
-        <div style="width:17px;height:17px;background:${is1?'var(--gold)':'var(--ink)'};color:${is1?'var(--ink)':'var(--gold-light)'};border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;margin-top:1px">${it.prio}</div>
-        <div><div style="font-weight:600;color:${is1?'var(--ink)':'var(--ink-2)'};font-size:12px">${it.cat} · ${it.p}</div><div style="margin-top:1px;color:var(--ink-2);font-size:13px">${esc(it.text)}</div></div>
-      </div>`; }).join('')}</div>`
+    ?ap.slice(0,8).map(it=>`<div class="res-row${it.prio===1?' top1':''}"><div class="res-badge">${it.prio}</div><div><div class="res-row-sub">${it.cat} · ${it.p}</div><div class="res-row-title">${esc(it.text)}</div></div></div>`).join('')
     :'<p style="color:var(--ink-4);font-size:13px">우선순위가 설정된 목표가 없습니다. 기간별 목표표에서 설정해주세요.</p>';
 }
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
