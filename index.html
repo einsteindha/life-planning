@@ -252,6 +252,11 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
   .bridge-row{margin:5px 0;break-inside:avoid;page-break-inside:avoid}
   .m3{font-size:8px}
   .pt{font-size:7.5px}
+  .obstacle-card,.obstacle-card *{font-size:11px!important}
+  #panel-result>*:last-child{margin-bottom:0!important}
+  .card-w:last-child{margin-bottom:0!important}
+  html,body{height:auto;overflow:visible}
+  #step-9,#panel-result{page-break-after:avoid}
 }
 @media(max-width:900px){
   .val-2col{grid-template-columns:1fr}
@@ -759,25 +764,22 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
     <div class="card-w"><div class="sec-h" style="margin-bottom:.7rem">내면의 소리 3×3</div><div id="res-matrix"></div></div>
 
     <div class="card-w"><div class="sec-h" style="margin-bottom:.7rem">O — 장애물 (Obstacles)</div><div id="res-obstacles"></div></div>
-    <div class="card-w">
+    <div class="card-w obstacle-card">
       <div class="eyebrow" style="margin-bottom:.5rem">O — Obstacles 구체적 접근법</div>
       <div class="e-section-title">장애물 극복하기 — 3단계 방법</div>
       <p style="font-size:15px;color:var(--ink-3);line-height:1.7;margin-bottom:1rem">장애물 단계는 단순히 문제를 나열하는 것이 아닙니다. 불꽃을 살리고, 내면을 드러내고, 창조적으로 돌파하는 과정입니다.</p>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin-bottom:.5rem">
-        <div style="padding:1rem;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:var(--radius-lg)">
-          <div style="font-family:'DM Serif Display',serif;font-size:24px;color:var(--ink);margin-bottom:.3rem">①</div>
-          <div style="font-weight:500;font-size:15px;color:var(--ink);margin-bottom:.4rem">불꽃이 계속 타오르게</div>
-          <div style="font-size:13px;color:var(--ink-2);line-height:1.7">내면의 소리(Heart's Core)에서 발견한 꿈과 욕망이 식지 않도록 합니다. 어린 시절부터 땅에 묻어온 꿈의 불씨를 다시 꺼내어 그것이 여전히 살아있음을 확인하는 것이 출발점입니다.</div>
+      <div class="obstacle-steps" style="display:flex;flex-direction:column;gap:.5rem;margin-bottom:.5rem">
+        <div style="display:flex;align-items:baseline;gap:.85rem;padding:.75rem 1rem;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:var(--radius-lg)">
+          <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);flex-shrink:0">①</div>
+          <div><div style="font-weight:500;font-size:14px;color:var(--ink);margin-bottom:.2rem">불꽃이 계속 타오르게</div><div style="font-size:13px;color:var(--ink-2);line-height:1.7">내면의 소리(Heart's Core)에서 발견한 꿈과 욕망이 식지 않도록 합니다. 어린 시절부터 땅에 묻어온 꿈의 불씨를 다시 꺼내어 그것이 여전히 살아있음을 확인하는 것이 출발점입니다.</div></div>
         </div>
-        <div style="padding:1rem;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:var(--radius-lg)">
-          <div style="font-family:'DM Serif Display',serif;font-size:24px;color:var(--ink);margin-bottom:.3rem">②</div>
-          <div style="font-weight:500;font-size:15px;color:var(--ink);margin-bottom:.4rem">내적 장애물 드러내기</div>
-          <div style="font-size:13px;color:var(--ink-2);line-height:1.7">무의식적 신념, 자기 비판, 두려움, "나는 이런 사람이 아니야"라는 내면의 목소리들이 모두 수면 위로 올라오도록 합니다. 드러난 것은 더 이상 무의식적으로 작동하지 않습니다.</div>
+        <div style="display:flex;align-items:baseline;gap:.85rem;padding:.75rem 1rem;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:var(--radius-lg)">
+          <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);flex-shrink:0">②</div>
+          <div><div style="font-weight:500;font-size:14px;color:var(--ink);margin-bottom:.2rem">내적 장애물 드러내기</div><div style="font-size:13px;color:var(--ink-2);line-height:1.7">무의식적 신념, 자기 비판, 두려움, "나는 이런 사람이 아니야"라는 내면의 목소리들이 모두 수면 위로 올라오도록 합니다. 드러난 것은 더 이상 무의식적으로 작동하지 않습니다.</div></div>
         </div>
-        <div style="padding:1rem;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:var(--radius-lg)">
-          <div style="font-family:'DM Serif Display',serif;font-size:24px;color:var(--ink);margin-bottom:.3rem">③</div>
-          <div style="font-weight:500;font-size:15px;color:var(--ink);margin-bottom:.4rem">창조적 시나리오 만들기</div>
-          <div style="font-size:13px;color:var(--ink-2);line-height:1.7">외적 장애물(자금 부족, 가족 반대, 현실적 제약 등)에 대해 브레인스토밍을 통해 <em>창조적인 우회 경로</em>를 만들어 냅니다. 현실적이지 않아도 됩니다. 가능성의 공간을 먼저 넓히는 것이 목표입니다.</div>
+        <div style="display:flex;align-items:baseline;gap:.85rem;padding:.75rem 1rem;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:var(--radius-lg)">
+          <div style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);flex-shrink:0">③</div>
+          <div><div style="font-weight:500;font-size:14px;color:var(--ink);margin-bottom:.2rem">창조적 시나리오 만들기</div><div style="font-size:13px;color:var(--ink-2);line-height:1.7">외적 장애물(자금 부족, 가족 반대, 현실적 제약 등)에 대해 브레인스토밍을 통해 <em>창조적인 우회 경로</em>를 만들어 냅니다. 현실적이지 않아도 됩니다. 가능성의 공간을 먼저 넓히는 것이 목표입니다.</div></div>
         </div>
       </div>
     </div>
