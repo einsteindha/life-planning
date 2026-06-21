@@ -121,6 +121,11 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 .m3-ta{width:100%;border:1px solid var(--paper-3);border-radius:var(--radius);padding:8px 10px;font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--ink);resize:none;min-height:96px;line-height:1.5;background:var(--paper)}
 .m3-ta:focus{outline:1px solid var(--gold);border-color:transparent}
 .m3-ta.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48,48,.15);background:#fff5f5}
+.cat-empty .pt-in{pointer-events:none}
+
+/* CAT TOOLTIP */
+.cat-tip{position:absolute;background:var(--ink);color:var(--gold-light);font-size:12px;padding:5px 10px;border-radius:var(--radius);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .2s;z-index:200}
+.cat-tip.show{opacity:1}
 
 /* PERIOD TABLE */
 .pt-ctrls{display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;flex-wrap:wrap}
@@ -183,13 +188,13 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 /* RESULT */
 .res-hero{text-align:center;padding:1.25rem 0 .75rem}
 .res-mark{font-family:'DM Serif Display',serif;font-size:38px;color:var(--gold);margin-bottom:.4rem}
-.bridge-row{display:flex;align-items:center;justify-content:center;gap:4px;margin:.9rem 0;flex-wrap:wrap}
-.bx{background:var(--paper);border:1px solid var(--paper-3);border-radius:var(--radius);padding:6px 9px;text-align:center;min-width:78px}
+.bridge-row{display:flex;align-items:center;justify-content:center;gap:0;margin:.9rem 0;flex-wrap:wrap}
+.bx{background:var(--paper);border:1px solid var(--paper-3);border-radius:var(--radius);padding:10px 12px;text-align:center;flex:1;min-width:80px;min-height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .bx.hl{background:var(--ink);border-color:var(--ink);color:var(--gold-light)}
-.bx.ac{background:var(--ink);border-color:var(--ink);color:var(--gold-light)}
-.bx-l{font-size:10px;opacity:.7;margin-bottom:1px;letter-spacing:.06em;text-transform:uppercase}
-.bx-v{font-family:'DM Serif Display',serif;font-size:15px}
-.barrow{font-size:14px;color:var(--gold)}
+.bx.ac{background:var(--gold);border-color:var(--gold);color:var(--ink);box-shadow:0 2px 8px rgba(196,147,63,.35)}
+.bx-l{font-size:11px;opacity:.7;margin-bottom:3px;letter-spacing:.06em}
+.bx-v{font-size:13px;font-weight:500;line-height:1.4;font-family:'Noto Sans KR',sans-serif}
+.barrow{font-size:22px;color:var(--gold);padding:0 8px;flex-shrink:0}
 .k-ans{padding:.6rem .85rem;background:var(--paper-2);border:1px solid var(--paper-3);border-radius:var(--radius);margin-bottom:.4rem}
 .k-q{font-weight:500;color:var(--ink-3);font-size:12px;margin-bottom:2px;text-transform:uppercase;letter-spacing:.06em}
 .k-a{font-size:13px;color:var(--ink-2);line-height:1.6;white-space:pre-wrap}
@@ -605,7 +610,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
     </div>
     <button class="add-cat-btn" onclick="addCat()">+ 카테고리 추가</button>
   </div>
-  <div class="nav"><button class="btn btn-s" onclick="step8Back()">← 이전</button><button class="btn btn-p" id="step7-final-btn" onclick="startPriority()">우선순위 설정하기 →</button></div>
+  <div class="nav"><button class="btn btn-s" onclick="step8Back()">← 이전</button><span id="pt-warn" style="display:none;font-size:13px;color:var(--red);font-weight:500">목표를 최소 1개 이상 입력해주세요.</span><button class="btn btn-p" id="step7-final-btn" onclick="startPriority()">우선순위 설정하기 →</button></div>
 </div>
 
 <!-- ─── 8: FINAL (2 TABS) ─── -->
@@ -735,7 +740,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
     <div class="card">
       <div class="res-hero">
         <h2>가치 기반 재무목표 설정</h2>
-        <p style="font-size:14px;color:var(--ink-3);margin-top:.2rem">가치에서 출발한 재무목표입니다.</p>
+        <p style="font-size:14px;color:var(--ink-3);margin-top:.2rem;line-height:1.8;font-family:'Noto Serif KR',serif">가치에서 출발한 재무목표입니다.<br>현재를 그대로 옮겨 적은 것은 목표가 아닙니다 — 지금의 나를 움직이게 만드는 것, 그것이 진짜 목표입니다.<br>인위적으로 세운 목표는 현재 상황을 움직이지 않습니다.<br>오직 가치에서 피어난 <em>뜨거운 작은 불씨</em>만이 현실에 균열을 만듭니다.</p>
       </div>
       <div class="bridge-row">
         <div class="bx"><div class="bx-l">현재 상황</div><div class="bx-v">Reality</div></div>
@@ -1067,9 +1072,21 @@ function renderPeriodTable(){
       const td=document.createElement('td');
       td.className='pt-cell'+(prio>0?' assigned':'')+(hascat?'':' cat-empty');
       td.dataset.ci=ci; td.dataset.p=p;
-      td.innerHTML=`<textarea class="pt-in" id="pti-${ci}-${p}" rows="2" oninput="ptChange(${ci},'${p}',this.value)"${hascat?'':' disabled'}>${esc(cell.text)}</textarea>
+      td.innerHTML=`<textarea class="pt-in" id="pti-${ci}-${p}" rows="2" oninput="ptChange(${ci},'${p}',this.value)"${hascat?'':' disabled'}${prioMode?' readonly':''}>${esc(cell.text)}</textarea>
         <div class="prio-badge" onclick="removePrio(${ci},'${p}')">${prio}</div>`;
-      if(prioMode&&hascat) td.addEventListener('click',e=>{ if(e.target.classList.contains('prio-badge'))return; prioClick(ci,p,td); });
+      if(prioMode&&hascat) td.addEventListener('click',e=>{ if(e.target.classList.contains('prio-badge'))return; if(periodData[ci]?.[p]?.prio>0) removePrio(ci,p); else prioClick(ci,p,td); });
+      if(!hascat) td.addEventListener('click',()=>{
+        if(periodCats[ci]?.trim()) return;
+        const inputs=document.querySelectorAll('.cat-edit');
+        if(inputs[ci]){
+          inputs[ci].focus();
+          inputs[ci].style.transition='border-color .2s,background .2s';
+          inputs[ci].style.borderColor='var(--red)';
+          inputs[ci].style.background='#fff5f5';
+          setTimeout(()=>{ inputs[ci].style.borderColor=''; inputs[ci].style.background=''; },1500);
+          _catTip(inputs[ci]);
+        }
+      });
       tr.appendChild(td);
     });
     tbody.appendChild(tr);
@@ -1077,7 +1094,17 @@ function renderPeriodTable(){
   updatePrioCount();
 }
 function ptChange(ci,p,val){ if(!periodData[ci])periodData[ci]={}; if(!periodData[ci][p])periodData[ci][p]={text:'',prio:0}; periodData[ci][p].text=val; save(); }
-function renameCat(ci,val){ periodCats[ci]=val; const hc=val.trim()!==''; PERIODS.forEach(p=>{ const ta=document.getElementById('pti-'+ci+'-'+p); if(ta){ ta.disabled=!hc; const td=ta.closest('td'); if(td) td.classList.toggle('cat-empty',!hc); } }); save(); }
+function renameCat(ci,val){
+  if(val.trim()===''){
+    const hasGoals=PERIODS.some(p=>periodData[ci]?.[p]?.text.trim());
+    if(hasGoals){
+      const inputs=document.querySelectorAll('.cat-edit');
+      if(inputs[ci]){ inputs[ci].value=periodCats[ci]; inputs[ci].style.transition='border-color .2s,background .2s'; inputs[ci].style.borderColor='var(--red)'; inputs[ci].style.background='#fff5f5'; setTimeout(()=>{ inputs[ci].style.borderColor=''; inputs[ci].style.background=''; },1500); }
+      return;
+    }
+  }
+  periodCats[ci]=val; const hc=val.trim()!==''; PERIODS.forEach(p=>{ const ta=document.getElementById('pti-'+ci+'-'+p); if(ta){ ta.disabled=!hc; const td=ta.closest('td'); if(td) td.classList.toggle('cat-empty',!hc); } }); save();
+}
 function addCat(){
   savePeriodDOM(); periodCats.push('');
   const ci=periodCats.length-1; periodData[ci]={};
@@ -1125,6 +1152,20 @@ function syncStep7Nav(){
 function startPriority(){
   savePeriodDOM();
   if(!prioMode){
+    const hasAny=periodCats.some((_,ci)=>PERIODS.some(p=>periodData[ci]?.[p]?.text.trim()));
+    if(!hasAny){
+      // 빈 셀 분홍 배경
+      document.querySelectorAll('.pt-cell textarea').forEach(ta=>{
+        ta.style.transition='background .2s';
+        ta.style.background='#fff5f5';
+        setTimeout(()=>ta.style.background='',2000);
+      });
+      // 메시지 표시
+      const warn=document.getElementById('pt-warn');
+      warn.style.display='inline';
+      setTimeout(()=>warn.style.display='none',2500);
+      return;
+    }
     prioMode=true;
     const btn=document.getElementById('prio-mode-btn');
     btn.classList.add('on');
@@ -1161,10 +1202,15 @@ function buildResult(){
   const top3=priority.slice(0,3);
   document.getElementById('res-top').textContent=top3.length?top3.map(v=>v.n).join(' · '):'Values';
 
-  // 우선순위 목표 개수
-  let pCnt=0;
-  periodCats.forEach((_,ci)=>PERIODS.forEach(p=>{ if(periodData[ci]?.[p]?.prio>0) pCnt++; }));
-  document.getElementById('res-gn').textContent=pCnt+'개 목표';
+  // 우선순위 목표 카테고리
+  const gnParts=[];
+  periodCats.forEach((cat,ci)=>{
+    if(!cat.trim()) return;
+    const goals=PERIODS.flatMap(p=>{ const cell=periodData[ci]?.[p]; return (cell&&cell.prio>0&&cell.text.trim())?[{text:cell.text,prio:cell.prio}]:[]; }).sort((a,b)=>a.prio-b.prio);
+    if(!goals.length) return;
+    gnParts.push(`<div style="text-align:left;margin-bottom:.4rem"><div style="font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--gold-light);margin-bottom:2px">${cat}</div>${goals.map(g=>`<div style="font-size:11px;line-height:1.5;opacity:.85">· ${g.text}</div>`).join('')}</div>`);
+  });
+  document.getElementById('res-gn').innerHTML=gnParts.join('');
 
   document.getElementById('res-kinder').innerHTML=[
     {q:'💰 재정적 자유가 있다면? (Having)',id:'q1'},
@@ -1299,6 +1345,21 @@ function loadSaved(){
 }
 function syncChips(cid,set){ document.querySelectorAll('#'+cid+' .chip').forEach(c=>c.classList.toggle('sel',set.has(c.dataset.n))); }
 function resetAll(){ if(!confirm('모든 작성 내용을 초기화하시겠습니까?')) return; localStorage.removeItem(SK); location.reload(); }
+
+// ─── CAT TOOLTIP ──────────────────────────────
+const _catTip=(()=>{
+  const el=document.createElement('div');
+  el.className='cat-tip'; el.textContent='카테고리를 먼저 입력해주세요';
+  document.body.appendChild(el);
+  let _t;
+  return function(anchor){
+    const r=anchor.getBoundingClientRect();
+    el.style.left=(r.left+window.scrollX)+'px';
+    el.style.top=(r.bottom+window.scrollY+6)+'px';
+    el.classList.add('show');
+    clearTimeout(_t); _t=setTimeout(()=>el.classList.remove('show'),2000);
+  };
+})();
 
 // ─── INIT ─────────────────────────────────────
 initPD(); buildChips(); renderPeriodTable(); loadSaved();
