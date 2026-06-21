@@ -73,8 +73,9 @@ h2{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:500;color:var(--
 
 /* KINDER */
 .q-box{background:var(--gold-pale);border:1px solid var(--gold-light);border-left:3px solid var(--gold);border-radius:0 var(--radius-lg) var(--radius-lg) 0;padding:.9rem 1.1rem;margin-bottom:1rem;font-family:'Noto Serif KR',serif;font-size:16px;color:var(--ink-2);line-height:1.8;font-style:italic}
-textarea.answer{width:100%;min-height:130px;border:1px solid var(--paper-3);border-radius:var(--radius);padding:.8rem .95rem;font-size:15px;font-family:'Noto Sans KR',sans-serif;color:var(--ink);resize:vertical;background:var(--paper);transition:border-color .15s;line-height:1.65}
+textarea.answer{width:100%;min-height:325px;border:1px solid var(--paper-3);border-radius:var(--radius);padding:.8rem .95rem;font-size:15px;font-family:'Noto Sans KR',sans-serif;color:var(--ink);resize:none;background:var(--paper);transition:border-color .2s,box-shadow .2s,background .2s;line-height:1.65}
 textarea.answer:focus{outline:none;border-color:var(--gold)}
+textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48,48,.15);background:#fff5f5}
 .hint{font-size:13px;color:var(--ink-4);margin-top:.35rem}
 
 /* VALUE CHIPS */
@@ -119,6 +120,7 @@ textarea.answer:focus{outline:none;border-color:var(--gold)}
 .m3-cell{padding:5px}
 .m3-ta{width:100%;border:1px solid var(--paper-3);border-radius:var(--radius);padding:8px 10px;font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--ink);resize:none;min-height:96px;line-height:1.5;background:var(--paper)}
 .m3-ta:focus{outline:1px solid var(--gold);border-color:transparent}
+.m3-ta.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48,48,.15);background:#fff5f5}
 
 /* PERIOD TABLE */
 .pt-ctrls{display:flex;align-items:center;gap:.5rem;margin-bottom:.7rem;flex-wrap:wrap}
@@ -292,7 +294,7 @@ textarea.answer:focus{outline:none;border-color:var(--gold)}
       <div style="font-size:15px;color:var(--ink-3);margin-top:.2rem;margin-bottom:.1rem">가치 기반 재무설계</div>
       <div class="philosophy" style="margin:.75rem 0 .85rem">
         <div class="ph-title">진정한 열망을 다시 찾습니다.</div>
-        <div class="ph-text">인간은 자신의 삶을 <em>의미 있는 일과 관계로 채우고자 하는 강렬한 소망</em>을 지니고 있습니다. 재무목표는 세우는 것이 아닙니다. 가치관이 명확해질 때 자연스럽게 <em>드러나고 발견되는</em> 것입니다. EVOKE는 재무설계사와 함께 진행하는 라이프 플래닝 전 과정입니다. 이 도구는 그 과정을 만나기 전에 <strong style="color:var(--gold-light)">미리 스스로 탐구해볼 수 있도록</strong> 만들어졌습니다.</div>
+        <div class="ph-text">인간은 자신의 삶을 <em>의미 있는 일과 관계로 채우고자 하는 강렬한 소망</em>을 지니고 있습니다.<br>재무목표는 세우는 것이 아닙니다. 가치관이 명확해질 때 자연스럽게 <em>드러나고 발견되는</em> 것입니다.<br>EVOKE는 재무설계사와 함께 진행하는 라이프 플래닝 전 과정입니다. 이 도구는 그 과정을 만나기 전에 <strong style="color:var(--gold-light)">미리 스스로 탐구해볼 수 있도록</strong> 만들어졌습니다.</div>
       </div>
       <div class="i-grid">
         <div class="i-box"><div class="i-num">1</div><div class="i-lbl">킨더의<br>3가지 질문</div></div>
@@ -349,6 +351,17 @@ textarea.answer:focus{outline:none;border-color:var(--gold)}
       이 도구는 EVOKE의 <strong>E·V·O 단계</strong>를 미리 스스로 탐구해보는 도구입니다. 탐색이 끝나면 이 결과를 가지고 <strong>E·V·O에 대한 객관적인 해석</strong>을 받거나, <strong>K·E 단계</strong>(지식의 적용·실행)로 이어갈 수 있습니다.
     </div>
   </div>
+  <div id="time-notice" style="display:flex;align-items:center;gap:.75rem;background:#fffbf0;border:1px solid #f0d99a;border-left:3px solid var(--amber);border-radius:var(--radius-lg);padding:.85rem 1.1rem;margin-bottom:.75rem;transition:box-shadow .25s,border-color .25s,background .25s">
+    <div style="font-size:20px;line-height:1;flex-shrink:0">⏱</div>
+    <div style="flex:1">
+      <div style="font-size:13px;font-weight:500;color:var(--amber);letter-spacing:.05em;margin-bottom:.2rem">충분한 시간이 필요합니다</div>
+      <div style="font-size:14px;color:var(--ink-2);line-height:1.7">이 과정은 빠르게 훑는 설문이 아닙니다. 삶의 방향을 진지하게 탐색하는 시간입니다.<br><strong>최소 40분 이상 조용하고 방해받지 않는 환경</strong>에서 시작하시기를 권장합니다.</div>
+    </div>
+    <label style="display:flex;flex-direction:column;align-items:center;gap:.3rem;flex-shrink:0;cursor:pointer">
+      <input type="checkbox" id="time-check" style="width:20px;height:20px;accent-color:var(--amber);cursor:pointer">
+      <span style="font-size:11px;color:var(--ink-3);white-space:nowrap">확인했습니다</span>
+    </label>
+  </div>
   <div class="nav" style="justify-content:center"><button class="btn btn-p" onclick="go(1)">시작하기</button></div>
 </div>
 
@@ -365,7 +378,7 @@ textarea.answer:focus{outline:none;border-color:var(--gold)}
     <textarea class="answer" id="q1" placeholder="자유롭게 작성해주세요. 여행, 가족, 일, 취미, 봉사... 무엇이든 떠오르는 대로 적어보세요."></textarea>
     <p class="hint">정답이 없습니다. 솔직하고 구체적일수록 좋습니다.</p>
   </div>
-  <div class="nav"><button class="btn btn-s" onclick="go(0)">← 이전</button><button class="btn btn-p" onclick="go(2)">다음 →</button></div>
+  <div class="nav"><button class="btn btn-s" onclick="go(0)">← 이전</button><button class="btn btn-p" onclick="goQ('q1',2)">다음 →</button></div>
 </div>
 
 <!-- ─── 2: Q2 ─── -->
@@ -381,7 +394,7 @@ textarea.answer:focus{outline:none;border-color:var(--gold)}
     <textarea class="answer" id="q2" placeholder="시간이 한정되어 있다면 무엇이 가장 중요하게 느껴지나요?"></textarea>
     <p class="hint">첫 번째 질문과 달라지는 것이 있다면, 그것이 당신에게 더 깊은 가치일 수 있습니다.</p>
   </div>
-  <div class="nav"><button class="btn btn-s" onclick="go(1)">← 이전</button><button class="btn btn-p" onclick="go(3)">다음 →</button></div>
+  <div class="nav"><button class="btn btn-s" onclick="go(1)">← 이전</button><button class="btn btn-p" onclick="goQ('q2',3)">다음 →</button></div>
 </div>
 
 <!-- ─── 3: Q3 ─── -->
@@ -395,7 +408,7 @@ textarea.answer:focus{outline:none;border-color:var(--gold)}
     <p class="hint">이 질문에서 나오는 감정이 당신의 가장 핵심적인 가치를 드러냅니다.</p>
 
   </div>
-  <div class="nav"><button class="btn btn-s" onclick="go(2)">← 이전</button><button class="btn btn-p" onclick="go(4)">다음 →</button></div>
+  <div class="nav"><button class="btn btn-s" onclick="go(2)">← 이전</button><button class="btn btn-p" onclick="goQ('q3',4)">다음 →</button></div>
 </div>
 
 <div class="step" id="step-4">
@@ -460,6 +473,15 @@ textarea.answer:focus{outline:none;border-color:var(--gold)}
       </div>
     </div>
     <div class="vdesc" id="vdesc">가치 항목에 마우스를 올리면 설명이 표시됩니다.</div>
+    <div class="chips" id="custom-chips" style="margin-top:.5rem;margin-bottom:0"></div>
+    <div style="margin-top:.5rem;display:flex;align-items:center;gap:.5rem;padding:.55rem .85rem;background:var(--paper);border:1px solid var(--paper-3);border-radius:var(--radius)">
+      <span style="font-size:12px;color:var(--ink-4);white-space:nowrap;flex-shrink:0">직접 입력</span>
+      <span style="color:var(--paper-3);flex-shrink:0">|</span>
+      <input type="text" id="custom-val-input" placeholder="예: 유머, 소박함, 여유..." maxlength="12"
+        style="flex:1;border:none;background:transparent;font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--ink);outline:none"
+        onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomVal()}">
+      <button onclick="addCustomVal()" style="padding:.15rem .6rem;background:var(--ink);color:var(--gold-light);border:none;border-radius:var(--radius);font-size:12px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;white-space:nowrap;flex-shrink:0">+ 추가</button>
+    </div>
   </div>
   <div class="nav"><button class="btn btn-s" onclick="go(4)">← 이전</button><button class="btn btn-p" onclick="goPri()">우선순위 정하기 →</button></div>
 </div>
@@ -484,7 +506,7 @@ textarea.answer:focus{outline:none;border-color:var(--gold)}
     <h2>내면의 소리 — 핵심가치의 공간적 지도</h2>
     <p class="desc">킨더 3가지 질문의 답에서 발견한 목표들을 아래 매트릭스에 채워보세요. 이것이 <strong>첫 번째 청사진</strong> — 내가 소유하고(Have), 체험하고(Do), 되고자 하는(Be) 것들의 전체 지형도입니다.</p>
     <div class="guide-box">
-      <strong>작성 안내</strong> — 이 매트릭스는 <strong>진정한 열망(Desire) / 의무(Obligation) / 바람(Need)</strong>를 구분합니다
+      <strong>작성 안내</strong> — 이 매트릭스는 <strong>진정한 열망(Desire) / 의무(Obligation) / 바람·필요(Want·Need)</strong>를 구분합니다
       <ul style="margin-top:.55rem">
         <li><strong style="color:var(--gold)">❤️ 내면의 소리 (Heart's Core) = 진정한 열망</strong>: 하지 않으면 삶이 의미를 잃는 것. 이성이 아니라 가슴이 부르는 것. 업무는 산더미처럼 쌓여있어도 "아이들과 보내고 싶은 시간"처럼 — 설명하기 어렵지만 가슴에 남아있는 것들</li>
         <li><strong style="color:var(--ink-2)">✅ 해야 하는 것 (Ought to) = 의무</strong>: 가져야·해야·되어야 한다고 <em>느끼는</em> 것. 주의: 이 항목들은 <strong>무의식적 신념</strong>이나 타인의 기대를 내면화한 것일 수 있습니다. '왜 해야 하는가?'를 함께 탐색해보세요.</li>
@@ -544,7 +566,7 @@ textarea.answer:focus{outline:none;border-color:var(--gold)}
         </div>
       </div>
     </div>
-  <div class="nav"><button class="btn btn-s" onclick="go(6)">← 이전</button><button class="btn btn-p" onclick="go(8)">목표설정 매트릭스 →</button></div>
+  <div class="nav"><button class="btn btn-s" onclick="go(6)">← 이전</button><button class="btn btn-p" onclick="goMatrix()">목표설정 매트릭스 →</button></div>
 </div>
 
 <!-- ─── 7: PERIOD TABLE ─── -->
@@ -858,7 +880,31 @@ function initPD(){
 }
 
 // ─── NAV ─────────────────────────────────────
+function goQ(qId, toStep){
+  const ta=document.getElementById(qId);
+  if(!ta.value.trim()){
+    ta.classList.add('invalid');
+    ta.scrollIntoView({behavior:'smooth',block:'center'});
+    ta.focus();
+    ta.addEventListener('input',function h(){ ta.classList.remove('invalid'); ta.removeEventListener('input',h); });
+    return;
+  }
+  go(toStep);
+}
 function go(n){
+  if(n===1 && curStep===0 && !document.getElementById('time-check').checked){
+    const notice=document.getElementById('time-notice');
+    notice.style.borderColor='var(--red)';
+    notice.style.boxShadow='0 0 0 3px rgba(148,48,48,.18)';
+    notice.style.background='#fff5f5';
+    notice.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(()=>{
+      notice.style.borderColor='#f0d99a';
+      notice.style.boxShadow='';
+      notice.style.background='#fffbf0';
+    },2000);
+    return;
+  }
   document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
   document.getElementById('step-'+n).classList.add('active');
   curStep=n;
@@ -867,9 +913,35 @@ function go(n){
   document.getElementById('pLabel').textContent=LABELS[n]||'';
   window.scrollTo({top:0,behavior:'smooth'});
   if(n===7) syncStep7Nav();
+  const autoFocus={1:'q1',2:'q2',3:'q3'};
+  if(autoFocus[n]) setTimeout(()=>document.getElementById(autoFocus[n]).focus(),320);
   save();
 }
-function goPri(){ buildPriority(); go(6); }
+function goMatrix(){
+  const coreIds=['m-core-have','m-core-do','m-core-be'];
+  const filled=coreIds.some(id=>document.getElementById(id)?.value.trim());
+  if(!filled){
+    const tas=coreIds.map(id=>document.getElementById(id));
+    tas.forEach(ta=>ta.classList.add('invalid'));
+    function clearAll(){ tas.forEach(ta=>{ ta.classList.remove('invalid'); ta.removeEventListener('input',clearAll); }); }
+    tas.forEach(ta=>ta.addEventListener('input',clearAll));
+    tas[0].scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  go(8);
+}
+function goPri(){
+  if(!document.querySelectorAll('#step-5 .chip.sel').length){
+    const cnt=document.getElementById('tc');
+    cnt.style.transition='color .2s';
+    cnt.style.color='var(--red)';
+    cnt.style.fontWeight='600';
+    cnt.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(()=>{ cnt.style.color=''; cnt.style.fontWeight=''; },2000);
+    return;
+  }
+  buildPriority(); go(6);
+}
 function goFinal(){
   savePeriodDOM();
   const hasPrio=periodCats.some((_,ci)=>PERIODS.some(p=>periodData[ci]?.[p]?.prio>0));
@@ -888,7 +960,8 @@ function switchFinalTab(tab){
 
 // ─── CHIPS ───────────────────────────────────
 let selP=new Set(), selS=new Set(), selEn=new Set();
-function totalSel(){ return selT.size+selI.size+selP.size+selS.size+selEn.size; }
+let selCustom=new Set(), customVals=[];
+function totalSel(){ return selT.size+selI.size+selP.size+selS.size+selEn.size+selCustom.size; }
 function buildChips(){
   buildGroup(TV,'tv-chips','T');
   buildGroup(IV,'iv-chips','I');
@@ -906,6 +979,30 @@ function buildGroup(data,id,type){
     c.addEventListener('click',()=>toggleChip(c,v,type));
     el.appendChild(c);
   });
+}
+function makeCustomChip(val){
+  const c=document.createElement('span');
+  c.className='chip sel'; c.textContent=val; c.dataset.n=val; c.dataset.type='C';
+  c.addEventListener('click',()=>{
+    if(selCustom.has(val)){ selCustom.delete(val); c.classList.remove('sel'); }
+    else{ if(totalSel()>=10){ c.style.transform='scale(.93)'; setTimeout(()=>c.style.transform='',140); return; } selCustom.add(val); c.classList.add('sel'); }
+    document.getElementById('tc').textContent='전체 '+totalSel()+'개 선택됨';
+    save();
+  });
+  return c;
+}
+function addCustomVal(){
+  const input=document.getElementById('custom-val-input');
+  const val=input.value.trim();
+  if(!val) return;
+  if(customVals.includes(val)){ input.select(); return; }
+  if(totalSel()>=10){ input.style.borderColor='var(--red)'; setTimeout(()=>input.style.borderColor='',1500); return; }
+  customVals.push(val);
+  selCustom.add(val);
+  document.getElementById('custom-chips').appendChild(makeCustomChip(val));
+  input.value='';
+  document.getElementById('tc').textContent='전체 '+totalSel()+'개 선택됨';
+  save();
 }
 function selResonance(){ resonance=Array.from(document.querySelectorAll('input[name="resonance"]:checked')).map(e=>e.value); save(); }
 function getSet(type){ return type==='T'?selT:type==='I'?selI:type==='P'?selP:type==='S'?selS:selEn; }
@@ -925,6 +1022,7 @@ function buildPriority(){
     ...Array.from(selP).map(n=>({n,t:'개인적 가치',d:PV.find(v=>v.n===n)?.d||''})),
     ...Array.from(selS).map(n=>({n,t:'사회적 가치',d:SV.find(v=>v.n===n)?.d||''})),
     ...Array.from(selEn).map(n=>({n,t:'환경적 가치',d:EnV.find(v=>v.n===n)?.d||''})),
+    ...Array.from(selCustom).map(n=>({n,t:'직접 입력',d:''})),
   ];
   if(!priority.length) priority=all;
   else{ const ns=new Set(all.map(v=>v.n)); priority=priority.filter(v=>ns.has(v.n)); all.forEach(v=>{ if(!priority.find(p=>p.n===v.n)) priority.push(v); }); }
@@ -1166,6 +1264,7 @@ function save(){
       q3:document.getElementById('q3')?.value||'',
       selT:Array.from(selT),selI:Array.from(selI),
       selP:Array.from(selP),selS:Array.from(selS),selEn:Array.from(selEn),
+      selCustom:Array.from(selCustom),customVals,
       priority,periodCats,periodData,nextPrio,m3,
       resonance,
       obsFin:document.getElementById('obs-fin')?.value||'',
@@ -1183,6 +1282,7 @@ function loadSaved(){
   if(d.selP){selP=new Set(d.selP); syncChips('pv-chips',selP);}
   if(d.selS){selS=new Set(d.selS); syncChips('sv-chips',selS);}
   if(d.selEn){selEn=new Set(d.selEn); syncChips('ev-chips',selEn);}
+  if(d.customVals){ customVals=d.customVals; selCustom=new Set(d.selCustom||[]); const cc=document.getElementById('custom-chips'); cc.innerHTML=''; customVals.forEach(v=>{ const c=makeCustomChip(v); if(!selCustom.has(v)) c.classList.remove('sel'); cc.appendChild(c); }); }
   document.getElementById('tc').textContent='전체 '+totalSel()+'개 선택됨';
   if(d.resonance){ resonance=Array.isArray(d.resonance)?d.resonance:(d.resonance?[d.resonance]:[]); resonance.forEach(v=>{ const el=document.querySelector(`input[name="resonance"][value="${v}"]`); if(el) el.checked=true; }); }
   if(d.obsFin){const e=document.getElementById('obs-fin');if(e)e.value=d.obsFin;}
