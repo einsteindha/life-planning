@@ -287,6 +287,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 @media(max-width:600px){
   .con{padding:1.25rem 1rem}
   .site-header{padding:1rem}
+  .page{overflow-x:hidden}
   /* 첫화면 모바일 */
   .i-grid{display:none}
   .evoke-phase{display:none}
@@ -300,6 +301,8 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
   .fbox{flex:1;min-width:0}
   .flow{overflow-x:visible;margin-left:0;margin-right:0}
   .step0-extra{display:none}
+  .custom-val-row{padding:.5rem .6rem}
+  .custom-val-row #custom-val-input{min-width:0;width:0}
   .prog-wrap{padding:.8rem 1rem .5rem}
   .i-grid{grid-template-columns:repeat(2,1fr)}
   .p2col{grid-template-columns:1fr}
@@ -519,7 +522,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
     </div>
     <div class="vdesc" id="vdesc">가치 항목에 마우스를 올리면 설명이 표시됩니다.</div>
     <div class="chips" id="custom-chips" style="margin-top:.5rem;margin-bottom:0"></div>
-    <div style="margin-top:.5rem;display:flex;align-items:center;gap:.5rem;padding:.55rem .85rem;background:var(--paper);border:1px solid var(--paper-3);border-radius:var(--radius)">
+    <div class="custom-val-row" style="margin-top:.5rem;display:flex;align-items:center;gap:.5rem;padding:.55rem .85rem;background:var(--paper);border:1px solid var(--paper-3);border-radius:var(--radius)">
       <span style="font-size:12px;color:var(--ink-4);white-space:nowrap;flex-shrink:0">직접 입력</span>
       <span style="color:var(--paper-3);flex-shrink:0">|</span>
       <input type="text" id="custom-val-input" placeholder="예: 유머, 소박함, 여유..." maxlength="12"
