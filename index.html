@@ -67,7 +67,7 @@ h2{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:500;color:var(--
 .f-g{background:var(--gold);border-color:var(--gold);color:var(--ink)}
 .f-v{background:var(--ink);border-color:var(--ink);color:var(--gold-light)}
 .f-hvb{display:flex;gap:2px;margin-top:3px}
-.f-hvb span{padding:1px 4px;font-size:10px;font-weight:500;background:rgba(255,255,255,.22);border-radius:1px}
+.f-hvb span{padding:1px 4px;font-size:11px;font-weight:500;background:rgba(255,255,255,.22);border-radius:1px}
 .philosophy{background:var(--ink);color:#fff;border-radius:var(--radius-lg);padding:1.15rem 1.4rem;margin-top:1rem}
 .ph-title{font-size:12px;font-weight:500;color:var(--gold-light);margin-bottom:.4rem;letter-spacing:.1em;text-transform:uppercase}
 .ph-text{font-family:'Noto Serif KR',serif;font-size:15px;line-height:1.8;color:rgba(255,255,255,.82)}
@@ -150,7 +150,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 .pt-in{width:100%;border:none;background:transparent;font-size:12px;font-family:inherit;color:var(--ink);padding:3px 4px;resize:none;line-height:1.4;min-height:38px}
 .pt-in:focus{outline:none;background:var(--paper)}
 .pt-cell.cat-empty{background:var(--paper-2)}
-.prio-badge{position:absolute;top:2px;right:2px;width:15px;height:15px;border-radius:50%;background:var(--ink);color:var(--gold-light);font-size:10px;font-weight:500;display:none;align-items:center;justify-content:center;cursor:pointer}
+.prio-badge{position:absolute;top:2px;right:2px;width:15px;height:15px;border-radius:50%;background:var(--ink);color:var(--gold-light);font-size:11px;font-weight:500;display:none;align-items:center;justify-content:center;cursor:pointer}
 .assigned .prio-badge{display:flex}
 .add-cat-btn{padding:6px 14px;border:1px dashed var(--paper-3);border-radius:var(--radius);background:transparent;color:var(--ink-3);font-size:13px;cursor:pointer;font-family:inherit;width:100%;margin-top:.55rem;transition:all .14s}
 .add-cat-btn:hover{border-color:var(--ink-3);color:var(--ink)}
@@ -266,7 +266,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
   #step-9{display:block!important}
   .final-panel{display:none!important}
   #panel-result{display:block!important}
-  body{background:#fff;font-size:8.5px}
+  body{background:#fff;font-size:10px}
   .page{padding-bottom:0}
   .con{padding:0}
   .next-step-cta{display:none!important}
@@ -276,8 +276,8 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
   .p2col > *{margin-bottom:0;break-inside:avoid;page-break-inside:avoid}
   .k-ans{break-inside:avoid;page-break-inside:avoid}
   .bridge-row{margin:5px 0;break-inside:avoid;page-break-inside:avoid}
-  .m3{font-size:8px}
-  .pt{font-size:7.5px}
+  .m3{font-size:11px}
+  .pt{font-size:11px}
   .obstacle-card,.obstacle-card *{font-size:11px!important}
   #res-interp,#res-interp *{font-size:11px!important}
   #panel-result>*:last-child{margin-bottom:0!important}
@@ -312,7 +312,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
   .evoke-box{min-width:0;flex:1}
   .evoke-row{flex-wrap:nowrap;gap:2px}
   .evoke-letter{font-size:22px}
-  .evoke-ko{font-size:10px}
+  .evoke-ko{font-size:11px}
   .evoke-arrow{font-size:14px;margin-top:8px}
   .flow-label{display:none}
   .fbox{flex:1;min-width:0}
@@ -394,7 +394,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;padding:0 6px">
         <div class="flow-label" style="font-size:11px;color:var(--gold);font-weight:600;white-space:nowrap">재무적 선택</div>
-        <div class="flow-label" style="font-size:10px;color:var(--ink-4);white-space:nowrap;margin-bottom:2px">Financial Choices</div>
+        <div class="flow-label" style="font-size:11px;color:var(--ink-4);white-space:nowrap;margin-bottom:2px">Financial Choices</div>
         <div style="font-size:22px;color:var(--gold);line-height:1">→</div>
       </div>
       <div class="fbox" style="flex:1;min-width:80px">
@@ -1277,7 +1277,7 @@ function buildResult(){
   const top3Goals=allGoals.slice(0,3);
   const gnGrouped=[];
   top3Goals.forEach(g=>{ const ex=gnGrouped.find(x=>x.cat===g.cat); if(ex) ex.goals.push(g.text); else gnGrouped.push({cat:g.cat,goals:[g.text]}); });
-  document.getElementById('res-gn').innerHTML=gnGrouped.map(g=>`<div style="text-align:left;margin-bottom:.3rem"><div style="font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--gold-light);opacity:.8">${g.cat}</div>${g.goals.map(t=>`<div style="font-size:11px;line-height:1.4;opacity:.9">· ${t}</div>`).join('')}</div>`).join('');
+  document.getElementById('res-gn').innerHTML=gnGrouped.map(g=>`<div style="text-align:left;margin-bottom:.3rem"><div style="font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--gold-light);opacity:.8">${g.cat}</div>${g.goals.map(t=>`<div style="font-size:11px;line-height:1.4;opacity:.9">· ${t}</div>`).join('')}</div>`).join('');
 
   document.getElementById('res-kinder').innerHTML=[
     {q:'💰 재정적 자유가 있다면?',id:'q1'},
