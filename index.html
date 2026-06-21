@@ -810,7 +810,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
       <div class="bridge-row">
         <div class="bx"><div class="bx-l">현재 상황</div><div class="bx-v">Reality</div></div>
         <div class="barrow"><span class="ke-web">→</span><span class="ke-mob">↓</span></div>
-        <div class="bx hl"><div class="bx-l">재무목표</div><div class="bx-v" id="res-gn">Goals</div></div>
+        <div class="bx hl" style="align-items:flex-start;text-align:left"><div class="bx-l">재무목표</div><div class="bx-v" id="res-gn">Goals</div></div>
         <div class="barrow"><span class="ke-web">→</span><span class="ke-mob">↓</span></div>
         <div class="bx ac"><div class="bx-l">삶의 가치</div><div class="bx-v" id="res-top">Values</div></div>
       </div>
@@ -1276,7 +1276,7 @@ function buildResult(){
   allGoals.sort((a,b)=>a.prio-b.prio);
   const top3Goals=allGoals.slice(0,3);
   const gnGrouped=[];
-  top3Goals.forEach(g=>{ const last=gnGrouped[gnGrouped.length-1]; if(last&&last.cat===g.cat) last.goals.push(g.text); else gnGrouped.push({cat:g.cat,goals:[g.text]}); });
+  top3Goals.forEach(g=>{ const ex=gnGrouped.find(x=>x.cat===g.cat); if(ex) ex.goals.push(g.text); else gnGrouped.push({cat:g.cat,goals:[g.text]}); });
   document.getElementById('res-gn').innerHTML=gnGrouped.map(g=>`<div style="text-align:left;margin-bottom:.3rem"><div style="font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--gold-light);opacity:.8">${g.cat}</div>${g.goals.map(t=>`<div style="font-size:11px;line-height:1.4;opacity:.9">· ${t}</div>`).join('')}</div>`).join('');
 
   document.getElementById('res-kinder').innerHTML=[
