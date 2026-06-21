@@ -16,6 +16,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--paper);color:var(--ink);font-family:'Noto Sans KR',sans-serif;font-size:18px;line-height:1.65;min-height:100vh;word-break:keep-all}
 .page{max-width:1400px;margin:0 auto;padding-bottom:5rem}
+#print-wm{display:none}
 
 /* SITE HEADER */
 .site-header{border-bottom:1px solid var(--paper-3);padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--paper);z-index:100}
@@ -250,7 +251,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 /* PRINT A4 */
 @media print{
   @page{margin:8mm;size:A4}
-  body::before{content:'IdentiFi';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-40deg);font-family:'DM Serif Display',serif;font-size:110px;color:rgba(196,147,63,.08);white-space:nowrap;pointer-events:none;z-index:9999}
+  #print-wm{display:block;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-40deg);font-family:'DM Serif Display',serif;font-size:110px;color:rgba(196,147,63,.12);white-space:nowrap;pointer-events:none;z-index:9999;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .nav,.final-tabs,.pt-ctrls,.add-cat-btn,.guide-box,.prio-btn,.prio-reset,.prio-count,.prog-wrap{display:none!important}
   .site-header{position:static;border-bottom:1px solid #ddd;padding:.4rem .5rem;margin-bottom:.4rem}
   .site-cfp-sub{display:none}
@@ -302,8 +303,6 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
   .fbox{flex:1;min-width:0}
   .flow{overflow-x:visible;margin-left:0;margin-right:0}
   .step0-extra{display:none}
-  .smart-old{display:none}
-  .smarter-grid{grid-template-columns:1fr}
   .custom-val-row{padding:.5rem .6rem}
   .custom-val-row #custom-val-input{min-width:0;width:0}
   .prog-wrap{padding:.8rem 1rem .5rem}
@@ -317,6 +316,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
 </style>
 </head>
 <body>
+<div id="print-wm">IdentiFi</div>
 <div class="page">
 
 <header class="site-header">
@@ -697,44 +697,36 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
       <p style="font-size:15px;color:var(--ink-3);line-height:1.7;margin-bottom:1.1rem">설정한 목표를 <strong style="color:var(--ink)">중요도</strong>와 <strong style="color:var(--ink)">긴급도</strong> 두 축으로 분류해 우선순위를 결정합니다. 중요한 것과 긴급한 것을 혼동하지 않는 것이 핵심입니다.</p>
 
       <!-- Eisenhower 2x2 Matrix Table -->
-      <div style="overflow-x:auto;margin-bottom:1.1rem">
-        <table style="width:100%;border-collapse:collapse;min-width:440px">
+      <div style="margin-bottom:1.1rem">
+        <table style="width:100%;border-collapse:collapse">
           <thead>
             <tr>
-              <th style="border:none;background:transparent;width:100px"></th>
+              <th style="border:none;background:transparent;width:80px"></th>
               <th style="padding:8px 12px;background:var(--ink-2);color:#fff;text-align:center;font-size:14px;font-weight:500;border-radius:var(--radius) var(--radius) 0 0;border:1px solid var(--ink-2)">⚡ 긴급함</th>
               <th style="padding:8px 12px;background:var(--paper-3);color:var(--ink-3);text-align:center;font-size:14px;font-weight:500;border-radius:var(--radius) var(--radius) 0 0;border:1px solid var(--paper-3)">긴급하지 않음</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th style="padding:8px 10px;background:var(--ink-2);color:#fff;font-size:14px;font-weight:500;text-align:center;border-radius:var(--radius) 0 0 var(--radius);border:1px solid var(--ink-2);writing-mode:horizontal-tb;white-space:nowrap">⬆️ 중요함</th>
-              <!-- Q1 -->
-              <td style="padding:14px 16px;border:2px solid var(--paper-3);border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);vertical-align:top;background:var(--paper-2)">
-                <div style="font-size:12px;color:var(--ink-4);font-weight:500;letter-spacing:.08em;margin-bottom:5px">1사분면</div>
-                <div style="font-size:16px;font-weight:600;color:var(--ink);margin-bottom:6px">즉시 실행</div>
-                <div style="font-size:13px;color:var(--ink-2);line-height:1.65">긴급하고 중요한 일.<br>지금 바로 처리해야 합니다.<br><br><em style="color:var(--ink-3)">예: 긴급 자금 마련, 만기 도래 상품 처리</em></div>
+              <th style="padding:8px 6px;background:var(--ink-2);color:#fff;font-size:13px;font-weight:500;text-align:center;border-radius:var(--radius) 0 0 0;border:1px solid var(--ink-2);white-space:nowrap">⬆️ 중요함</th>
+              <td style="padding:16px 12px;border:2px solid var(--paper-3);border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);vertical-align:middle;background:var(--paper-2);text-align:center">
+                <div style="font-size:11px;color:var(--ink-4);font-weight:500;letter-spacing:.08em;margin-bottom:5px">1사분면</div>
+                <div style="font-size:17px;font-weight:600;color:var(--ink)">즉시 실행</div>
               </td>
-              <!-- Q2 HIGHLIGHTED -->
-              <td style="padding:14px 16px;border:2px solid var(--gold);vertical-align:top;background:var(--gold-light);position:relative">
-                <div style="font-size:12px;color:var(--ink-2);font-weight:500;letter-spacing:.08em;margin-bottom:5px">💡 2사분면</div>
-                <div style="font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px">계획 수립</div>
-                <div style="font-size:13px;color:var(--ink-2);line-height:1.65">중요하지만 긴급하지 않아 미루기 쉽습니다. 그러나 <strong style="color:var(--ink)">삶에 가장 큰 영향을 미치는</strong> 목표가 여기에 있습니다. 가장 많은 시간과 에너지를 투자해야 할 사분면입니다.<br><br><em style="color:var(--ink-3)">예: 노후 자금 준비, 장기 투자 시작, 자녀 교육비 플랜, 꿈꾸던 사업 준비</em></div>
+              <td style="padding:16px 12px;border:2px solid var(--gold);vertical-align:middle;background:var(--gold-light);text-align:center">
+                <div style="font-size:11px;color:var(--ink-2);font-weight:500;letter-spacing:.08em;margin-bottom:5px">💡 2사분면</div>
+                <div style="font-size:17px;font-weight:700;color:var(--ink)">계획 수립</div>
               </td>
             </tr>
             <tr>
-              <th style="padding:8px 10px;background:var(--paper-3);color:var(--ink-3);font-size:14px;font-weight:500;text-align:center;border-radius:0 0 0 var(--radius);border:1px solid var(--paper-3);white-space:nowrap">중요하지 않음</th>
-              <!-- Q3 -->
-              <td style="padding:14px 16px;border:2px solid var(--gold);vertical-align:top;background:var(--paper-2)">
-                <div style="font-size:12px;color:var(--ink-4);font-weight:500;letter-spacing:.08em;margin-bottom:5px">3사분면 ⚠️</div>
-                <div style="font-size:16px;font-weight:600;color:var(--ink-2);margin-bottom:6px">검토 후 축소</div>
-                <div style="font-size:13px;color:var(--ink-2);line-height:1.65">긴급하게 느껴지지만 실제로는 중요하지 않습니다. <strong style="color:var(--ink-2)">2사분면과 가장 혼동하기 쉬운 구간</strong>으로, 여기에 자원을 낭비하면 정작 중요한 목표를 위한 여력이 줄어듭니다.<br><br><em style="color:var(--ink-3)">예: 올해 성대한 생일 파티 개최, 매년 떠나야 하는 해외여행, 고가 자동차 구입, 타인의 기대에 맞춘 지출</em></div>
+              <th style="padding:8px 6px;background:var(--paper-3);color:var(--ink-3);font-size:13px;font-weight:500;text-align:center;border-radius:0 0 0 var(--radius);border:1px solid var(--paper-3);white-space:nowrap">중요하지<br>않음</th>
+              <td style="padding:16px 12px;border:2px solid var(--gold);border-top:none;vertical-align:middle;background:var(--paper-2);text-align:center">
+                <div style="font-size:11px;color:var(--ink-4);font-weight:500;letter-spacing:.08em;margin-bottom:5px">3사분면 ⚠️</div>
+                <div style="font-size:17px;font-weight:600;color:var(--ink-2)">검토 후 축소</div>
               </td>
-              <!-- Q4 -->
-              <td style="padding:14px 16px;border:2px solid var(--paper-3);border-left:none;vertical-align:top;background:var(--paper-2)">
-                <div style="font-size:12px;color:var(--ink-4);font-weight:500;letter-spacing:.08em;margin-bottom:5px">4사분면</div>
-                <div style="font-size:16px;font-weight:600;color:var(--ink-4);margin-bottom:6px">제거</div>
-                <div style="font-size:13px;color:var(--ink-3);line-height:1.65">중요하지도 긴급하지도 않습니다. 시간과 돈을 가장 먼저 줄여야 할 영역입니다.<br><br><em>예: 무계획적 충동 소비, 가치 없는 반복 지출, 불필요한 구독 서비스</em></div>
+              <td style="padding:16px 12px;border:2px solid var(--paper-3);border-left:none;border-top:none;vertical-align:middle;background:var(--paper-2);text-align:center">
+                <div style="font-size:11px;color:var(--ink-4);font-weight:500;letter-spacing:.08em;margin-bottom:5px">4사분면</div>
+                <div style="font-size:17px;font-weight:600;color:var(--ink-4)">제거</div>
               </td>
             </tr>
           </tbody>
@@ -753,18 +745,7 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
       <div class="eyebrow" style="margin-bottom:.5rem">목표 설정 방법론</div>
       <div class="e-section-title">목표 설정 TIP</div>
       <p style="font-size:15px;color:var(--ink-3);line-height:1.7;margin-bottom:1rem">기존의 SMART 목표설정을 확장한 SMARTER 프레임워크입니다. 7가지 기준으로 목표를 구체화하면 실행 가능성이 크게 높아집니다.</p>
-      <div class="smarter-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
-        <div class="smart-old">
-          <div style="text-align:center;font-size:13px;font-weight:500;color:var(--ink-3);letter-spacing:.12em;margin-bottom:.5rem;padding-bottom:.35rem;border-bottom:1px solid var(--paper-3);text-transform:uppercase">SMART (기존)</div>
-          <table class="st">
-            <tr><th>S</th><td><span class="st-let">Specific · 구체적</span><span class="st-sub">명확하게 정의된 목표. "저축을 늘린다" 보다 "매달 50만원 적금"이 더 강하다.</span></td></tr>
-            <tr><th>M</th><td><span class="st-let">Measurable · 측정 가능</span><span class="st-sub">수치화된 기준으로 달성 여부를 확인한다.</span></td></tr>
-            <tr><th>A</th><td><span class="st-let">Achievable · 달성 가능</span><span class="st-sub">현실적으로 이룰 수 있는 범위의 목표.</span></td></tr>
-            <tr><th>R</th><td><span class="st-let">Relevant · 관련성</span><span class="st-sub">전체 목적과 삶의 방향에 부합하는 목표.</span></td></tr>
-            <tr><th>T</th><td><span class="st-let">Time-bound · 기한 있는</span><span class="st-sub">명확한 완료 기한을 설정한다.</span></td></tr>
-          </table>
-        </div>
-        <div>
+      <div>
           <div style="text-align:center;font-size:13px;font-weight:500;color:var(--gold);letter-spacing:.12em;margin-bottom:.5rem;padding-bottom:.35rem;border-bottom:2px solid var(--gold-light);text-transform:uppercase">SMARTER (확장)</div>
           <table class="st">
             <tr><th>S</th><td><span class="st-let">Specific · 명확한</span><span class="st-sub">집중력이 곧 힘. 문제 해결력과 노력의 방향을 결정한다. "저축을 늘린다"보다 "매달 50만원을 적금에 넣는다"가 훨씬 강하다.</span></td></tr>
@@ -775,7 +756,6 @@ textarea.answer.invalid{border-color:var(--red);box-shadow:0 0 0 3px rgba(148,48
             <tr><th>E</th><td><span class="st-let">Exciting · 흥미진진함</span><span class="st-sub">목표에 내재된 본질을 포착해 설레는 이유를 명확히 한다. "왜 이 목표인가?"에 스스로 답할 수 있어야 한다.</span></td></tr>
             <tr><th>R</th><td><span class="st-let">Relevant · 적절성</span><span class="st-sub">나의 가치에 부합하고, 삶의 다른 목표와도 조화로운 목표여야 한다. 가치와 연결되지 않는 목표는 달성해도 공허하다.</span></td></tr>
           </table>
-        </div>
       </div>
     </div>
 
